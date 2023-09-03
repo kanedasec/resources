@@ -15,27 +15,27 @@ perform_osint() {
             echo "Performing OSINT for a username..."
             # Add your username-related OSINT commands here
             read -p "What is the username of the target? " OSINT_TARGET
-            spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
-            python3 sherlock --timeout 10 $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
+            spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/$OSINT_TARGET-$(date +%Y_%m_%d)
+            python3 /home/kali/sherlock/sherlock/sherlock.py --timeout 10 $OSINT_TARGET | tee -a $report_path/$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         "email")
             echo "Performing OSINT for an email..."
             # Add your email-related OSINT commands here
             read -p "What is the e-mail of the target? " OSINT_TARGET
-            spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
+            spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         "ip")
             echo "Performing OSINT for an IP..."
             # Add your IP-related OSINT commands here
             read -p "What is the IP of the target? " OSINT_TARGET
-            spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
+            spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         "domain")
             echo "Performing OSINT for a domain..."
             # Add your domain-related OSINT commands here
             read -p "What is the domain of the target? " OSINT_TARGET
-            spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
-            theharvester -d $OSINT_TARGET| tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
+            spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/$OSINT_TARGET-$(date +%Y_%m_%d)
+            theharvester -d $OSINT_TARGET| tee -a $report_path/$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         *)
             echo "Invalid option. Please choose a valid option: name, username, email, ip, or domain."
