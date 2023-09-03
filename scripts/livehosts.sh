@@ -2,7 +2,7 @@
 
 SELFIP="$(ifconfig | grep inet | grep broadcast | cut -d " " -f 10)"
 TARGETNETWORK="$(echo $SELFIP | sed 's:[^.]*$:0/24:')"
-report_path="./fuktermux/resources/reports"
+report_path="/home/kali/resources/reports"
 
 nmap_output=$(nmap -sn $TARGETNETWORK -oG - | grep Up | cut -d " " -f 2)
 

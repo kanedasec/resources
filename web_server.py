@@ -6,7 +6,7 @@ import signal
 app = Flask(__name__)
 
 # Specify the directory where your .txt files are located
-txt_directory = './fuktermux/resources/reports'
+txt_directory = '/home/kali/resources/reports'
 
 def shutdown_server():
     os.kill(os.getpid(), signal.SIGINT)
