@@ -5,17 +5,18 @@ report_path="/home/kali/resources/reports"
 # Function to perform OSINT based on the user's choice
 perform_osint() {
     case $1 in
-        "name")
-            echo "Performing OSINT for a name..."
-            # Add your name-related OSINT commands here
-            read -p "Who is the target? Put the name between single quotes: 'John Silva' " OSINT_TARGET
-            spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
-            ;;
+        #"name")
+        #    echo "Performing OSINT for a name..."
+        #    # Add your name-related OSINT commands here
+        #    read -p "Who is the target? Put the name between single quotes: 'John Silva' " OSINT_TARGET
+        #    spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
+        #    ;;
         "username")
             echo "Performing OSINT for a username..."
             # Add your username-related OSINT commands here
             read -p "What is the username of the target? " OSINT_TARGET
             spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
+            sherlock --timeout 10 $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         "email")
             echo "Performing OSINT for an email..."
@@ -34,6 +35,7 @@ perform_osint() {
             # Add your domain-related OSINT commands here
             read -p "What is the domain of the target? " OSINT_TARGET
             spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
+            theharvester -d $OSINT_TARGET| tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         *)
             echo "Invalid option. Please choose a valid option: name, username, email, ip, or domain."
@@ -53,18 +55,15 @@ read -p "Enter your choice (1/2/3/4/5): " choice
 # Map the user's choice to the respective option
 case $choice in
     1)
-        perform_osint "name"
-        ;;
-    2)
         perform_osint "username"
         ;;
-    3)
+    2)
         perform_osint "email"
         ;;
-    4)
+    3)
         perform_osint "ip"
         ;;
-    5)
+    4)
         perform_osint "domain"
         ;;
     *)
