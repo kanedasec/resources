@@ -1,1 +1,3 @@
-aloha
+Hello World.
+
+All the scripts you run from this resource list will be stored in this directorie. If you want, you can delete them from the the webserver page or manually via terminal.
