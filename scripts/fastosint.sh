@@ -16,7 +16,7 @@ perform_osint() {
             # Add your username-related OSINT commands here
             read -p "What is the username of the target? " OSINT_TARGET
             spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
-            sherlock --timeout 10 $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
+            python3 sherlock --timeout 10 $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         "email")
             echo "Performing OSINT for an email..."
@@ -45,12 +45,11 @@ perform_osint() {
 
 # Prompt the user for their choice
 echo "Select an OSINT option:"
-echo "1. Name"
-echo "2. Username"
-echo "3. Email"
-echo "4. IP"
-echo "5. Domain"
-read -p "Enter your choice (1/2/3/4/5): " choice
+echo "1. Username"
+echo "2. Email"
+echo "3. IP"
+echo "4. Domain"
+read -p "Enter your choice (1/2/3/4): " choice
 
 # Map the user's choice to the respective option
 case $choice in
