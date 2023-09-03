@@ -8,26 +8,31 @@ perform_osint() {
         "name")
             echo "Performing OSINT for a name..."
             # Add your name-related OSINT commands here
+            read -p "Who is the target? Put the name between single quotes: 'John Silva' " OSINT_TARGET
             spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         "username")
             echo "Performing OSINT for a username..."
             # Add your username-related OSINT commands here
+            read -p "What is the username of the target? " OSINT_TARGET
             spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         "email")
             echo "Performing OSINT for an email..."
             # Add your email-related OSINT commands here
+            read -p "What is the e-mail of the target? " OSINT_TARGET
             spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         "ip")
             echo "Performing OSINT for an IP..."
             # Add your IP-related OSINT commands here
+            read -p "What is the IP of the target? " OSINT_TARGET
             spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         "domain")
             echo "Performing OSINT for a domain..."
             # Add your domain-related OSINT commands here
+            read -p "What is the domain of the target? " OSINT_TARGET
             spiderfoot -q -u all -s $OSINT_TARGET | tee -a $report_path/Spiderfoot_Scan-$OSINT_TARGET-$(date +%Y_%m_%d)
             ;;
         *)
@@ -38,7 +43,7 @@ perform_osint() {
 
 # Prompt the user for their choice
 echo "Select an OSINT option:"
-echo "1. Name (use single quotes)"
+echo "1. Name"
 echo "2. Username"
 echo "3. Email"
 echo "4. IP"
@@ -66,9 +71,3 @@ case $choice in
         echo "Invalid choice. Please enter a valid option."
         ;;
 esac
-
-
-
-
-
-read -p "Who is the target? (name between single quotes, username, e-mail, ip, domain) " OSINT_TARGET
